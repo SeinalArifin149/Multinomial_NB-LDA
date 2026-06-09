@@ -187,7 +187,7 @@ df['clean_step4'] = df['clean_step3'].apply(normalisasi)
 print(f"\nTotal kata di kamus gabungan : {len(kamus_gabungan)}")
 print(f"Total kata di whitelist      : {len(whitelist_baku)}")
 print("\nHasil Normalisasi:")
-print(df[['clean_step3', 'clean_step4']].head(5))
+print(df[['clean_step3', 'clean_step4']].head(50))
 
 # ==========================================
 # TAHAP 5: STOPWORD REMOVAL (REVISI)
@@ -213,6 +213,19 @@ kata_penting_sentimen = {
     # Kata Penghubung Kontras/Kondisi (mengubah arah sentimen)
     'tapi', 'padahal', 'terus', 'masa', 'kalau', 'karena',
     'walaupun', 'meskipun', 'namun'
+}
+
+# Tambahkan kategori baru di dalam set kata_penting_sentimen
+kata_penting_sentimen = {
+    # Kata Negasi (menolak sentimen)
+    'tidak', 'bukan', 'jangan', 'kurang', 'belum', 'enggak',
+    
+    # Kata Penguat (Intensifier sentimen)
+    'sangat', 'banget', 'sekali', 'paling', 'terlalu', 'lumayan', 'banyak',
+    
+    # Kata Penghubung Kontras/Kondisi (mengubah arah sentimen)
+    'tapi', 'padahal', 'terus', 'masa', 'kalau', 'karena',
+    'walaupun', 'meskipun', 'namun', 'masih'
 }
 
 # Mengecualikan kata-kata penting dari daftar stopword NLTK
