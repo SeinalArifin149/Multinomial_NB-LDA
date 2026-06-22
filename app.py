@@ -29,7 +29,8 @@ def download_files_from_drive():
     
     files = {
         "topik": {
-            "id": "1DuFx9L1g__xBiZKFkTmIKQdBHRudq_DD",
+            # ID Baru dari link Google Drive Anda
+            "id": "1Tjh-_23iHH98ERlSVmQIlR8VJ3qayJvV",
             "output": "hasil_akhir_sentiment_per_topic_2026.csv"
         },
         "aspek": {
@@ -71,7 +72,7 @@ ASPEK_DICT = {
     "Service": ["layanan", "dukungan", "respon", "admin", "cs", "bantuan", "komplain", "laporan", "masukan", "obrolan", "tiket", "solusi", "panduan", "manual", "email", "tindak lanjut", "tutorial", "qa", "call center", "video", "teknis", "pengguna", "jawaban", "sopan", "lambat", "keluhan", "komunitas", "panduan lengkap", "dukungan", "helpdesk", "responsif", "sistem tiket", "umpan balik", "pemecahan masalah", "pelanggan", "servis desk", "obrolan langsung", "respon", "sla", "bantuan", "penyelesaian masalah", "panduan"],
     "Content": ["konten", "video", "vidio", "viral", "tren", "tantangan", "negatif", "dewasa", "edukasi", "musik", "rekomendasi", "humor", "informasi", "berita", "mode", "kecantikan", "permainan", "kuliner", "tutorial", "ulasan", "unboxing", "cerita", "blog", "artikel", "headline", "infografis", "siaran", "reaksi", "parodi", "kolaborasi", "menarik", "baru", "pendek", "panjang", "lucu", "instruktif", "hiburan", "review", "pendidikan", "dokumenter", "podcast", "siaran langsung", "shorts", "sorotan", "sinematik", "klip viral"],
     "Ads/Monetization": ["iklan", "berbayar", "koin", "hadiah", "dana", "penghasilan", "monetisasi", "sponsor", "promo", "langganan", "konten", "voucher", "kupon", "cashback", "harga", "ongkir", "pengiriman", "resi", "pelacakan", "kurir", "paket", "retur", "refund", "penukaran", "bayar", "pembayaran", "transfer", "saldo", "dompet", "invoice", "tagihan", "garansi", "status", "preorder", "cod", "kartu", "debit", "ewallet", "flash", "wishlist", "pengiriman", "pelacakan", "pengiriman paket", "pesanan", "penjual", "toko", "keranjang belanja", "proses checkout", "promosi"],
-    "Algorithm": ["rekomendasi", "algoritma", "tidak", "naik", "penonton", "suka", "pengikut", "interaksi", "jangkauan", "tayangan", "personal", "kurasi", "peringkat", "umpan", "jelajahi", "saran", "tren", "bayangan", "analisis", "wawasan", "pertumbuhan", "statistik", "visibilitas", "relevan", "serupa", "populer", "trending", "disesuaikan", "prioritas", "umpan", "rekomendasi pribadi", "pembelajaran mesin", "AI", "peringkat", "personalisasi", "gelembung filter", "bias"],
+    "Algorithm": ["rekomendasi", "algoritma", "tidak", "naik", "penonton", "suka", "pengikut", "interaksi", "jangkauan", "tayangan", "personal", "kurasi", "peringkat", "umpan", "jelajahi", "saran", "tren", "bayangan", "analisis", "wawasan", "pertumbuhan", "statistik", "visibilitas", "relevan", "serupa", "populer", "trending", "disesuaikan", "prioritas", "umpan", "rekomendasi pribadi", "pembelajaran machines", "AI", "peringkat", "personalisasi", "gelembung filter", "bias"],
     "Connectivity": ["internet", "jaringan", "wifi", "sinyal", "putus", "offline", "koneksi", "seluler", "latensi", "kecepatan", "stabilitas", "ping", "hotspot", "bandwidth", "gangguan", "hilang", "lambat", "sambungan", "tidak stabil", "terputus", "mode offline", "online", "drop sinyal", "jaringan", "cakupan", "data", "konektivitas"],
     "Audio": ["suara", "audio", "musik", "volume", "lirik", "lagu", "rekaman", "mikrofon", "gangguan", "penyeimbang", "headphone", "speaker", "bas", "treble", "loop", "hening", "jelas", "sinkronisasi", "efek", "karaoke", "pecah", "hilang", "lambat", "mic", "suara", "derau", "musik latar", "suara", "earphone", "distorsi", "umpan balik", "putar ulang", "equalizer", "level audio"],
     "Notification": ["notifikasi", "pemberitahuan", "tidak", "peringatan", "pengingat", "popup", "pembaruan", "lencana", "suara", "getar", "pesan", "pengaturan", "senyap", "tertunda", "kesalahan", "frekuensi", "pengingat", "peringatan", "push", "lencana", "informasi", "peringatan", "jadwal", "nada dering", "getar", "notifikasi"],
@@ -82,10 +83,10 @@ ASPEK_DICT = {
 }
 
 TOPIC_DISPLAY_ORDER = [
-    "Masalah Teknis & Bug",
-    "Masalah Akun & Blokir",
-    "Hiburan & Positif",
-    "Fitur & Konten",
+    "Fitur & Instalasi",
+    "Konten Video",
+    "Akun & Pemblokiran",
+    "Kepuasan Pengguna"
 ]
 
 def sort_topics_by_display_order(topics):
@@ -142,18 +143,18 @@ def load_and_preprocess_data(filepath):
             if 0 in unique_nums or (3 in unique_nums and 4 not in unique_nums):
                 # Data Berbasis 0 (0, 1, 2, 3)
                 df['topic'] = df['raw_num'].map({
-                    0: "Masalah Teknis & Bug",
-                    1: "Masalah Akun & Blokir",
-                    2: "Hiburan & Positif",
-                    3: "Fitur & Konten"
+                    0: "Fitur & Instalasi",
+                    1: "Konten Video",
+                    2: "Akun & Pemblokiran",
+                    3: "Kepuasan Pengguna"
                 })
             else:
                 # Data Berbasis 1 (1, 2, 3, 4)
                 df['topic'] = df['raw_num'].map({
-                    1: "Masalah Teknis & Bug",
-                    2: "Masalah Akun & Blokir",
-                    3: "Hiburan & Positif",
-                    4: "Fitur & Konten"
+                    1: "Fitur & Instalasi",
+                    2: "Konten Video",
+                    3: "Akun & Pemblokiran",
+                    4: "Kepuasan Pengguna"
                 })
             df = df.drop(columns=['raw_num'])
             
@@ -163,10 +164,10 @@ def load_and_preprocess_data(filepath):
             if prob_cols:
                 df['raw_topic'] = df[prob_cols].idxmax(axis=1)
                 df['topic'] = df['raw_topic'].str.extract(r'(\d+)').astype(float).map({
-                    0: "Masalah Teknis & Bug",
-                    1: "Masalah Akun & Blokir",
-                    2: "Hiburan & Positif",
-                    3: "Fitur & Konten"
+                    0: "Fitur & Instalasi",
+                    1: "Konten Video",
+                    2: "Akun & Pemblokiran",
+                    3: "Kepuasan Pengguna"
                 })
                 df = df.drop(columns=['raw_topic'])
 
@@ -317,7 +318,7 @@ def home_page(df):
                  x='Sentiment', y='Jml', color='Sentiment', facet_col='topic',
                  color_discrete_map={'Positif':'green', 'Negatif':'red'})
     
-    fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1][:30]+"...")) 
+    fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[-1])) 
     st.plotly_chart(fig, use_container_width=True)
 
 def about_page(df):
@@ -471,10 +472,17 @@ def aspect_analysis_page():
             monthly_data = df_exp[df_exp['bulan_str'].isin(selected_months)]
             monthly_counts = monthly_data.groupby(['aspek', 'sentimen_label']).size().reset_index(name='Count')
             
+            # PERBAIKAN DI SINI: Indentasi blok kode disinkronkan kembali agar tidak Error
             if not monthly_counts.empty:
                 fig_m, ax_m = plt.subplots(figsize=(12, 6))
-                sns.barplot(data=monthly_counts, x="aspek", y="Count", hue="sentimen_label", 
-                            palette={'Negative': '#ff6b6b', 'Positive': '#51cf66'}, ax=ax_m)
+                sns.barplot(
+                    data=monthly_counts,
+                    x="aspek",
+                    y="Count",
+                    hue="sentimen_label",
+                    palette={'Negative': '#ff6b6b', 'Positive': '#51cf66'},
+                    ax=ax_m
+                )
                 ax_m.set_title(f"Combined Sentiment Distribution ({', '.join(selected_months)})")
                 ax_m.set_xticklabels(ax_m.get_xticklabels(), rotation=45, ha="right")
                 ax_m.grid(axis='y', linestyle='--', alpha=0.5)
